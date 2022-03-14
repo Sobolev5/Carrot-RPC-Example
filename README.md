@@ -15,4 +15,4 @@ docker logs starlette_plus_rabbitmq_microservice_sum_1 --tail 100 --follow
 ```
 
 You can see full working example on:
-> http://31.210.172.230:5888/
+> http://5.187.4.179:5888/
