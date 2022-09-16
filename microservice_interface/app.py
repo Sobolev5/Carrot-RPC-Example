@@ -18,7 +18,7 @@ html = """
     </head>
     <body style="background-color: #faf06c">
         <div class="container mt-1" style="text-align: center;">    
-            <img src="https://andrey-sobolev.ru/static/starlette_rabbit.jpg">  
+            <a href="https://github.com/Sobolev5/carrot-rpc"><img src="https://andrey-sobolev.ru/static/starlette_rabbit.jpg"></a> 
         </div>
         <div class="container mt-1">         
             <div class="card">
@@ -39,13 +39,6 @@ html = """
                             <button type="submit" class="btn btn-primary">Sum A and B</button>
                         </form>
                     </div>
-                </div>
-                <div class="p-3"> 
-                    <p>
-                        Buy me a coffee. Thanks!
-                    </p> 
-                    <p>0x6817b29f6a25B7BaE42158FAFad7b782415e4209 ETH</p>
-                    <p>TZ1Hs1tkpPJFrPzmvo8xtHEKErXniV3x21 TRC (TRON)</p>
                 </div>
             </div>
         </div>
