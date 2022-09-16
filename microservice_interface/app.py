@@ -22,6 +22,9 @@ html = """
         </div>
         <div class="container mt-1">         
             <div class="card">
+                <div class="card-header">
+                    carrot-rpc==0.2.1
+                </div>
                 <div class"card-body">   
                     <div class="p-3">  
                         Sum A and B (will be calculated on microservice «microservice_sum») *.

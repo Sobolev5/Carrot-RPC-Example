@@ -19,6 +19,7 @@ services:
       retries: 5
 
   microservice_interface:
+    container_name: microservice_interface
     build: 
       context: ./microservice_interface/
       dockerfile: Dockerfile        
@@ -30,6 +31,7 @@ services:
         condition: service_healthy
 
   microservice_sum:
+    container_name: microservice_sum
     build: 
       context: ./microservice_sum/
       dockerfile: Dockerfile        
