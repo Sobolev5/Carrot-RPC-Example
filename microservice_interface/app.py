@@ -6,9 +6,10 @@ from starlette.responses import JSONResponse
 from starlette.responses import HTMLResponse
 from starlette.routing import Route
 
+# set amqp connection:
 AMQP_URI = "amqp://admin:YTmJqsNx2@rabbitmq/vhost"
 
-
+# make template:
 html = """
 <!DOCTYPE html>
 <html>
@@ -23,13 +24,13 @@ html = """
         <div class="container mt-1">         
             <div class="card">
                 <div class="card-header">
-                    carrot-rpc==0.2.1
+                    carrot-rpc==0.2.5
                 </div>
                 <div class"card-body">   
                     <div class="p-3">  
-                        Sum A and B (will be calculated on microservice «microservice_sum») *.
+                        Sum A and B will be calculated on microservice «microservice_sum» and validated with pydantic schema.
                         <br>
-                        <small>* This page load via «microservice_interface».</small>               
+                        <small><b>Note</b> This page render by «microservice_interface».</small>               
                         <form action="/" method="POST">
                             <div class="mb-3">
                                 <label class="form-label">Number A</label>
@@ -49,27 +50,28 @@ html = """
 </html>
 """
 
-
+# defer main function which call microservice «microservice_sum»:
 async def call_sum_a_and_b(request):
-    # sum_a_and_b - will be calculated on microservice «microservice_sum»
     if request.method == "POST":
         sprint(f"call_sum_a_and_b", с="green", s=1, p=1)
         data = await request.form()
 
+        # make dict request:
         dct = {}
-        dct["who_am_i"] = "i'm function on microservice_interface which call RPC in microservice_sum"
+        dct["caller"] = "Function on microservice_interface which call RPC in microservice_sum"
         dct["number_a"] = int(data["number_a"])
         dct["number_b"] = int(data["number_b"])
 
+        # defer carrot instance and make rpc call:
         carrot = await Carrot(AMQP_URI).connect()
         response_from_another_microservice = await carrot.call(dct, "microservice_sum:sum_a_and_b")    
 
         # dct: first arg is dict with data
-        # "another_microservice:sum_a_and_b": second arg it is name of routing key (through default AMQP exchange) 
+        # another_microservice:sum_a_and_b: second arg it routing key (through default AMQP exchange) 
 
+        # get response dict from microservice «microservice_sum»
         sprint(f'Sum a and b: {response_from_another_microservice["sum"]}', c="yellow", s=1, p=1)
-        return JSONResponse({"sum (response from microservice_sum)": response_from_another_microservice["sum"]})
-    
+        return JSONResponse({"sum (response from microservice_sum)": response_from_another_microservice["sum"]})    
     else:
         return HTMLResponse(html)
 

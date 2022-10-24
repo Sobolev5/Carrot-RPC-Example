@@ -1,6 +1,6 @@
-aiormq==5.2.2
-carrot-rpc==0.2.1
-simple-print==1.4.2
-uvicorn==0.13.2
-starlette==0.14.1
-python-multipart==0.0.5
+aiormq==6.4.2
+carrot-rpc==0.2.5
+simple-print==1.4.7
+uvicorn==0.18.3
+starlette==0.20.4
+fastapi==0.85.1
