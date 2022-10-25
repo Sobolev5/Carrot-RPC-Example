@@ -3,6 +3,7 @@ version: '3.8'
 services:
     
   rabbitmq:
+    container_name: carrot_rabbitmq
     image: 'rabbitmq:3.8.9-management'
     environment:
       - RABBITMQ_DEFAULT_USER=admin
@@ -19,7 +20,7 @@ services:
       retries: 5
 
   microservice_interface:
-    container_name: microservice_interface
+    container_name: carrot_interface
     build: 
       context: ./microservice_interface/
       dockerfile: Dockerfile        
@@ -31,11 +32,13 @@ services:
         condition: service_healthy
 
   microservice_sum:
-    container_name: microservice_sum
+    container_name: carrot_sum
     build: 
       context: ./microservice_sum/
       dockerfile: Dockerfile        
     restart: always
+    ports:
+      - 5889:5889 
     depends_on:     
       rabbitmq:
         condition: service_healthy

@@ -1,4 +1,4 @@
-FROM python:3.10.2-buster
+FROM python:3.9.1-buster
 
 LABEL Sobolev Andrey
 
@@ -32,4 +32,4 @@ WORKDIR /app/
 
 RUN pip3 install -r ./requirements.txt
 
-CMD ["python", "app.py"]
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "5889"]

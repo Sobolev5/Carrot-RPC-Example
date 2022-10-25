@@ -1,4 +1,4 @@
-FROM python:3.10.2-buster
+FROM python:3.9.1-buster
 
 LABEL Sobolev Andrey
 
