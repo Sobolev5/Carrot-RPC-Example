@@ -28,7 +28,7 @@ html = """
                 </div>
                 <div class"card-body">   
                     <div class="p-3"> 
-                        1) This is page render by <code>MICROSERVICE_INTERFACE</code>
+                        1) This page render by <code>MICROSERVICE_INTERFACE</code>
                         <br>
                         2) Number A + Number B will be calculated on <code>MICROSERVICE_SUM</code> with pydantic schema validation and 
                         <code>MICROSERVICE_INTERFACE</code> render response from <code>MICROSERVICE_SUM</code>
