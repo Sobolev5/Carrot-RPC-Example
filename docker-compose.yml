@@ -2,12 +2,12 @@ version: '3.8'
 
 services:
     
-  rabbitmq:
+  carrot_rabbitmq:
     container_name: carrot_rabbitmq
     image: 'rabbitmq:3.8.9-management'
     environment:
       - RABBITMQ_DEFAULT_USER=admin
-      - RABBITMQ_DEFAULT_PASS=YTmJqsNx2
+      - RABBITMQ_DEFAULT_PASS=admin
       - RABBITMQ_DEFAULT_VHOST=vhost
       - RABBITMQ_ERLANG_COOKIE=SWLOKODSQBDRPCLNMEQT   
     expose:
@@ -19,28 +19,26 @@ services:
       timeout: 10s
       retries: 5
 
-  microservice_interface:
-    container_name: carrot_interface
+  microservice_aa:
+    container_name: microservice_aa
     build: 
-      context: ./microservice_interface/
+      context: ./microservice_aa/
       dockerfile: Dockerfile        
     restart: always
     ports:
-      - 5888:5888 
+      - 14000:14000 
     depends_on:     
-      rabbitmq:
+      carrot_rabbitmq:
         condition: service_healthy
 
-  microservice_sum:
-    container_name: carrot_sum
+  microservice_bb:
+    container_name: microservice_bb
     build: 
-      context: ./microservice_sum/
+      context: ./microservice_bb/
       dockerfile: Dockerfile        
     restart: always
-    ports:
-      - 5889:5889 
     depends_on:     
-      rabbitmq:
+      carrot_rabbitmq:
         condition: service_healthy
 
 
